@@ -15,10 +15,10 @@ if (isset($_GET['deconnexion']))
   header('Location: .');
   exit();
 }
-$dbuser = 'root';
-$dbpasword = '';
+$dbuser = getenv('DB_USER');
+$dbpassword = getenv('DB_PASSWORD');
 
-$db = new PDO('mysql:host=localhost;dbname=combats', $dbuser,$dbpasword );
+$db = new PDO('mysql:host=localhost;dbname=combats',$dbuser,$dbpassword );
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requête a échoué.
 
 $repository = new PersonnagesRepository($db);
